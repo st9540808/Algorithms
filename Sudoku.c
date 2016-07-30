@@ -2,21 +2,23 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+
 void solve(char** board, int boardRowSize, int boardColSize);
 bool validAnsExist(char** board, int row, int col);
 bool isValid(char** board, char testAns, int row, int col);
+
 void printOut(char** board);
 
 char input[9][9] =
     {"53..7....", //0
-     "6..195...", //1
-     ".98....6.", //2
-     "8...6...3", //3
-     "4..8.3..1", //4
-     "7...2...6", //5
-     ".6....28.", //6
-     "...419..5", //7
-     "....8..79"};//8
+	 "6..195...", //1
+	 ".98....6.", //2
+	 "8...6...3", //3
+	 "4..8.3..1", //4
+	 "7...2...6", //5
+	 ".6....28.", //6
+	 "...419..5", //7
+	 "....8..79"};//8
 	//012345678
 
 
@@ -35,12 +37,12 @@ int main()
 
 	for(int i = 0; i < 9; ++i)
 		for(int j = 0; j < 9; ++j)
-			array[i][j] = input[i][j];
+		array[i][j] = input[i][j];
 	
 	solve(array, 9, 9);
 	printOut(array);
 
-    for(int i = 0; i < 9; ++i) 
+	for(int i = 0; i < 9; ++i) 
         free(array[i]);  
     free(array);  
     return 0;
@@ -114,7 +116,7 @@ bool validAnsExist(char** board, int row, int col)
 bool isValid(char** board, char testAns, int row, int col)
 {
     //verify row
-    for(int i = 0; i < 9; ++i)
+	for(int i = 0; i < 9; ++i)
 		if( testAns != '.' && i != col && board[row][i] == testAns )
 			return false;
    
