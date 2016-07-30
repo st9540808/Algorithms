@@ -10,7 +10,7 @@ bool isValid(char** board, char testAns, int row, int col);
 void printOut(char** board);
 
 char input[9][9] =
-    {"53..7....", //0
+	{"53..7....", //0
 	 "6..195...", //1
 	 ".98....6.", //2
 	 "8...6...3", //3
@@ -115,7 +115,7 @@ bool validAnsExist(char** board, int row, int col)
 
 bool isValid(char** board, char testAns, int row, int col)
 {
-    //verify row
+	//verify row
 	for(int i = 0; i < 9; ++i)
 		if( testAns != '.' && i != col && board[row][i] == testAns )
 			return false;
