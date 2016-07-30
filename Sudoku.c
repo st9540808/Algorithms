@@ -75,11 +75,11 @@ void solveSudoku(char** board, int boardRowSize, int boardColSize)
 		}
         else
         {
-		do
-		{
-			--col;
-			if( col == -1 ){ --row; col = 8;if(row == -1) break;}
-		}while( map[row][col] != '.' );
+			do
+			{
+				--col;
+				if( col == -1 ){ --row; col = 8;if(row == -1) break;}
+			}while( map[row][col] != '.' );
         }
     }//end of back tracking
 }
@@ -96,12 +96,12 @@ bool validAnsExist(char** board, int row, int col)
 				return true;
 			}
 		}
-    	}
-    	else
+    }
+    else
+   	{
+    	for(char testAns = board[row][col] + 1; testAns <= '9'; ++testAns)
     	{
-    		for(char testAns = board[row][col] + 1; testAns <= '9'; ++testAns)
-    		{
-    			if( isValid(board, testAns, row, col) )
+    		if( isValid(board, testAns, row, col) )
 			{
 				board[row][col] = testAns;
 				return true;
