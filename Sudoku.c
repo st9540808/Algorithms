@@ -153,4 +153,3 @@ void printOut(char** board)
         printf("\n");
     }
 }
-
