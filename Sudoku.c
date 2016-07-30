@@ -3,7 +3,7 @@
 #include <stdbool.h>
 
 
-void solve(char** board, int boardRowSize, int boardColSize);
+void solveSudoku(char** board, int boardRowSize, int boardColSize);
 bool validAnsExist(char** board, int row, int col);
 bool isValid(char** board, char testAns, int row, int col);
 
@@ -39,7 +39,7 @@ int main()
 		for(int j = 0; j < 9; ++j)
 			array[i][j] = input[i][j];
 	
-	solve(array, 9, 9);
+	solveSudoku(array, 9, 9);
 	printOut(array);
 
 	for(int i = 0; i < 9; ++i) 
@@ -49,68 +49,68 @@ int main()
 }
 
 
-void solve(char** board, int boardRowSize, int boardColSize)
+void solveSudoku(char** board, int boardRowSize, int boardColSize)
 {
-    char map[9][9]; 
-    for(int i = 0; i < 9; ++i) 
-        for(int j = 0; j < 9; ++j)
-            map[i][j] = board[i][j];
+	char map[9][9]; 
+	for(int i = 0; i < 9; ++i) 
+		for(int j = 0; j < 9; ++j)
+			map[i][j] = board[i][j];
 
-    int row = 0, col = 0;
-    while( map[row][col] != '.' )//initialize to the location of first blank in map[][]
-    {
-        ++col;
-        if( col == 9 ){	++row; col = 0;	if(row == 9) break;}
-    }
+	int row = 0, col = 0;
+	while( map[row][col] != '.' )//initialize to the location of first blank in map[][]
+	{	
+		++col;
+		if( col == 9 ){	++row; col = 0;	if(row == 9) break;}
+    	}
 
-    while( row != 9 && row != -1 )//start backtracking
-    {
-        if( validAnsExist(board, row, col) )
-        {
-            do
-            {
-                ++col;
-                if( col == 9 ){	++row; col = 0;if(row == 9) break;}
-            }while( map[row][col] != '.' );
-        }
+	while( row != 9 && row != -1 )//start backtracking
+	{
+		if( validAnsExist(board, row, col) )
+		{
+			do
+			{
+				++col;
+				if( col == 9 ){	++row; col = 0;if(row == 9) break;}
+			}while( map[row][col] != '.' );
+		}
         else
         {
-            do
-            {
-                --col;
-                if( col == -1 ){ --row; col = 8;if(row == -1) break;}
-            }while( map[row][col] != '.' );
+		do
+		{
+			--col;
+			if( col == -1 ){ --row; col = 8;if(row == -1) break;}
+		}while( map[row][col] != '.' );
         }
     }//end of back tracking
 }
 
 bool validAnsExist(char** board, int row, int col)
 {
-    if( board[row][col] == '.' )
-    {
-        for(char testAns = '1'; testAns <= '9'; ++testAns)
-        {
-            if( isValid(board, testAns, row, col) )
-            {
-                board[row][col] = testAns;
-                return true;
-            }
-        }
-    }
-    else
-    {
-        for(char testAns = board[row][col] + 1; testAns <= '9'; ++testAns)
-        {
-            if( isValid(board, testAns, row, col) )
-            {
-                board[row][col] = testAns;
-                return true;
-            }
-        }
-    }
+	if( board[row][col] == '.' )
+	{
+		for(char testAns = '1'; testAns <= '9'; ++testAns)
+		{
+			if( isValid(board, testAns, row, col) )
+			{
+				board[row][col] = testAns;
+				return true;
+			}
+		}
+    	}
+    	else
+    	{
+    		for(char testAns = board[row][col] + 1; testAns <= '9'; ++testAns)
+    		{
+    			if( isValid(board, testAns, row, col) )
+			{
+				board[row][col] = testAns;
+				return true;
+			}
+		}
+	}
     
-    board[row][col] = '.';
-    return false;	
+	board[row][col] = '.';
+	return false;	
 }
 
 bool isValid(char** board, char testAns, int row, int col)
