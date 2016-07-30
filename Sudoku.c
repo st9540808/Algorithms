@@ -96,12 +96,12 @@ bool validAnsExist(char** board, int row, int col)
 				return true;
 			}
 		}
-    }
-    else
+	}
+	else
    	{
-    	for(char testAns = board[row][col] + 1; testAns <= '9'; ++testAns)
-    	{
-    		if( isValid(board, testAns, row, col) )
+		for(char testAns = board[row][col] + 1; testAns <= '9'; ++testAns)
+    		{
+			if( isValid(board, testAns, row, col) )
 			{
 				board[row][col] = testAns;
 				return true;
