@@ -37,7 +37,7 @@ int main()
 
 	for(int i = 0; i < 9; ++i)
 		for(int j = 0; j < 9; ++j)
-		array[i][j] = input[i][j];
+			array[i][j] = input[i][j];
 	
 	solve(array, 9, 9);
 	printOut(array);
