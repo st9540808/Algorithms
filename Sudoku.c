@@ -24,16 +24,16 @@ char input[9][9] =
 
 int main()
 {
-    char **array;
-    array = malloc(9 * sizeof(char *)); 
-    for(int i = 0; i < 9; i++)
-    {
-        array[i] = malloc(9 * sizeof(char));
-        if(array[i] == NULL){
-            fprintf(stderr, "out of memory\n");
-            exit(EXIT_FAILURE);
-        }
-    }
+	char **array;
+	array = malloc(9 * sizeof(char *)); 
+	for(int i = 0; i < 9; i++)
+	{
+		array[i] = malloc(9 * sizeof(char));
+		if(array[i] == NULL){
+			fprintf(stderr, "out of memory\n");
+			exit(EXIT_FAILURE);
+		}
+	}
 
 	for(int i = 0; i < 9; ++i)
 		for(int j = 0; j < 9; ++j)
@@ -43,9 +43,9 @@ int main()
 	printOut(array);
 
 	for(int i = 0; i < 9; ++i) 
-        free(array[i]);  
-    free(array);  
-    return 0;
+		free(array[i]);  
+	free(array);  
+	return 0;
 }
 
 
