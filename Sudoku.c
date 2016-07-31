@@ -74,7 +74,7 @@ void solveSudoku(char** board, int boardRowSize, int boardColSize)
 			}while( map[row][col] != '.' );
 		}
 		else
-        {
+		{
 			do
 			{
 				--col;
