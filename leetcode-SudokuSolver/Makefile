@@ -8,4 +8,4 @@ main.o: main.c solveSudoku.h
 	gcc -c main.c -g -Wall -std=c99
 
 clean:
-	-rm *.o $(object) solveSudoku
+	rm *.o main

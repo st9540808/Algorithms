@@ -64,20 +64,18 @@ bool isValid(char **board, char testAns, int row, int col)
 {
 	//verify row
 	for (int i = 0; i < 9; ++i)
-		if (testAns != '.' && i != col && board[row][i] == testAns)
+		if (testAns != '.' && board[row][i] == testAns)
 			return false;
 
 	//verify column
 	for (int i = 0; i < 9; ++i)
-		if (testAns != '.' && i != row && board[i][col] == testAns)
+		if (testAns != '.' && board[i][col] == testAns)
 			return false;
 
 	//verify cell
 	for (int i = 3 * (row / 3); i < 3 * (row / 3) + 3; ++i)
 		for (int j = 3 * (col / 3); j < 3 * (col / 3) + 3; ++j)
 		{
-			if (row == i && col == j)
-				continue;
 			if (testAns != '.' && board[i][j] == testAns)
 				return false;
 		}
