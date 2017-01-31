@@ -1,12 +1,11 @@
 //Sudoku solving core functions using backtracking
-
 #include "solveSudoku.h"
 
 void solveSudoku(char **board, int boardRowSize, int boardColSize)
 {
-	char map[9][9];
-	for (int i = 0; i < 9; ++i)
-		for (int j = 0; j < 9; ++j)
+	char map[boardRowSize][boardColSize];
+	for (int i = 0; i < boardRowSize; ++i)
+		for (int j = 0; j < boardColSize; ++j)
 			map[i][j] = board[i][j];
 
 	int row = 0, col = 0;
@@ -17,15 +16,13 @@ void solveSudoku(char **board, int boardRowSize, int boardColSize)
 	}
 
 	while (row != 9 && row != -1) //start backtracking
-	{
 		if (validAnsExist(board, row, col))
 		{
 			do
 			{
 				++col;
 				if (col == 9) {	++row; col = 0; if (row == 9) break;}
-			}
-			while (map[row][col] != '.');
+			} while (map[row][col] != '.');
 		}
 		else
 		{
@@ -33,10 +30,9 @@ void solveSudoku(char **board, int boardRowSize, int boardColSize)
 			{
 				--col;
 				if (col == -1) { --row; col = 8; if (row == -1) break;}
-			}
-			while (map[row][col] != '.');
-		}
-	} //end of back tracking
+			} while (map[row][col] != '.');
+		} 
+	//end of back tracking
 }
 
 bool validAnsExist(char **board, int row, int col)
@@ -44,24 +40,20 @@ bool validAnsExist(char **board, int row, int col)
 	if (board[row][col] == '.')
 	{
 		for (char testAns = '1'; testAns <= '9'; ++testAns)
-		{
 			if (isValid(board, testAns, row, col))
 			{
 				board[row][col] = testAns;
 				return true;
 			}
-		}
 	}
 	else
 	{
 		for (char testAns = board[row][col] + 1; testAns <= '9'; ++testAns)
-		{
 			if (isValid(board, testAns, row, col))
 			{
 				board[row][col] = testAns;
 				return true;
 			}
-		}
 	}
 
 	board[row][col] = '.';

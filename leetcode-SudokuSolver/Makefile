@@ -1,5 +1,5 @@
 PROGRAM: solveSudoku.o main.o
-	gcc -o solveSudoku solveSudoku.o main.o -g -Wall -std=c99
+	gcc -o main solveSudoku.o main.o -g -Wall -std=c99
 
 solveSudoku.o: solveSudoku.c solveSudoku.h
 	gcc -c solveSudoku.c -g -Wall -std=c99

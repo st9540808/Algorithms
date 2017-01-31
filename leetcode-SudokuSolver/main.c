@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "solveSudoku.h"
 
-void printOut(char **board);
+void print(char **board);
 
 char input[9][9] =
 {
@@ -14,8 +14,8 @@ char input[9][9] =
 	"7...2...6", //5
 	".6....28.", //6
 	"...419..5", //7
-	"....8..79"
-};//8
+	"....8..79", //8
+};
 //012345678
 
 
@@ -38,7 +38,7 @@ int main()
 			array[i][j] = input[i][j];
 
 	solveSudoku(array, 9, 9);
-	printOut(array);
+	print(array);
 
 	for (int i = 0; i < 9; ++i)
 		free(array[i]);
@@ -47,7 +47,7 @@ int main()
 }
 
 
-void printOut(char **board)
+void print(char **board)
 {
 	for (int i = 0; i < 9; ++i)
 	{
