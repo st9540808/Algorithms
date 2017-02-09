@@ -1,4 +1,7 @@
-PROGRAM: solveSudoku.o main.o
+cpp_Sudoku: solveSudoku.h main.cpp
+	g++-6 -o main main.cpp -g -Wall -std=gnu++14
+
+c_Sudoku: solveSudoku.o main.o
 	gcc -o main solveSudoku.o main.o -g -Wall -std=c99
 
 solveSudoku.o: solveSudoku.c solveSudoku.h
