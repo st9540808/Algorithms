@@ -6,7 +6,7 @@ class Solution {
 public:
     void solveSudoku(vector<vector<char>>& board)
 	{
-		auto map = board;
+		vector<vector<char>> map = board;
 
 		int row = 0, col = 0;
 		while (map[row][col] != '.') // initialize to the location of first blank in map[][]
@@ -36,7 +36,7 @@ public:
     }
 
 private:
-	bool validAnsExist(auto &board, int row, int col)
+	bool validAnsExist(vector<vector<char>> &board, int row, int col)
 	{
 		if (board[row][col] == '.')
 		{
@@ -61,7 +61,7 @@ private:
 		return false;
 	}
 	
-	bool isValid(const auto &board, char testAns, int row, int col) const
+	bool isValid(const vector<vector<char>> &board, char testAns, int row, int col) const
 	{
 		// verify row
 		for (int i = 0; i < 9; ++i)
