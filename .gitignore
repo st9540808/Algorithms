@@ -1,17 +1,16 @@
 *
 !.gitignore
-
+!README.md
 !Makefile
 !*.cpp
 !*.h
 !*.c
 !*.m
-!*.out
 
-!in.txt
-!Sample_input.txt
+in.txt
+Sample_input
+Sample_input.txt
 
-!README.md
 .ycm_extra_conf.py
 test.cpp
 test.c
