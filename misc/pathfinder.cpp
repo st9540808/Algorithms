@@ -1,5 +1,4 @@
 #include <iostream>
-#include <stack>
 #include <array>
 using namespace std;
 
@@ -16,7 +15,7 @@ class PathFinder
 		bool operator==(const position& rhs) const {
 			return !(this->operator!=(rhs));
 		}
-		position  operator+(const position& rhs) const {
+		position operator+(const position& rhs) const {
 			position result(this->x + rhs.x, this->y + rhs.y);
 			return result;
 		}
@@ -40,7 +39,7 @@ public:
 	void findAllPath()
 	{
 		const auto initChoice = Urules;
-		for (const auto& initDirection : initChoice)
+		for (const auto initDirection : initChoice)
 			findPath(initPos + initDirection, initDirection);
 		cout << pathCount << "\n";
 	}
