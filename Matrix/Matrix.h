@@ -28,6 +28,7 @@ public:
 
 	Matrix<T> operator+(const Matrix<T>&) const;
 	Matrix<T> operator*(const Matrix<T>&) const;
+	void transpose();
 
 private:
 	size_type rows;
@@ -68,10 +69,11 @@ std::istream& operator>>(std::istream& is, Matrix<U>& matrix)
 }
 
 template <typename T>
-typename Matrix<T>::size_type Matrix<T>::index(size_type row, size_type col) const
+inline typename Matrix<T>::size_type
+Matrix<T>::index(size_type row, size_type col) const
 {
 	return row * this->cols + col >= 0
-		 ? row * this->cols + col
+	     ? row * this->cols + col
 	     : throw std::out_of_range("index out of range");
 }
 
@@ -98,7 +100,7 @@ Matrix<T> Matrix<T>::operator+(const Matrix<T>& rhs) const
 	Matrix<T> result(this->rows, this->cols);
 	for (auto resultIter = result.data.begin(), thisIter = this->data.begin(),
 	          rhsIter = rhs.data.begin(); resultIter != result.data.end();
-	        ++resultIter, ++thisIter, ++rhsIter)
+	          ++resultIter, ++thisIter, ++rhsIter)
 		*resultIter = *thisIter + *rhsIter;
 
 	return result;
@@ -122,6 +124,17 @@ Matrix<T> Matrix<T>::operator*(const Matrix<T>& rhs) const
 		}
 
 	return result;
+}
+
+template <typename T>
+void Matrix<T>::transpose()
+{
+	// for square matrix
+	if (this->rows != this->cols) return;
+	
+	for (size_type i = 0; i < this->rows; ++i)
+		for (size_type j = i + 1; j < this->rows; ++j)
+			std::iter_swap(index_iter(i, j), index_iter(j, i));
 }
 
 #endif
