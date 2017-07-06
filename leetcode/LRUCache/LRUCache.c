@@ -71,14 +71,11 @@ LRUCache* lRUCacheCreate(int capacity)
 
 int lRUCacheGet(LRUCache* obj, int key)
 {
-	int value;
-	
 	entry *entry_ptr = obj->data[key % obj->capacity];
 	while (entry_ptr != NULL) {
 		if (entry_ptr->key == key) {
-			value = entry_ptr->value;
 			lRUCache_llist_put_in_tail(obj, entry_ptr->node_ptr);
-			return value;
+			return entry_ptr->value;
 		}
 		entry_ptr = entry_ptr->next;
 	}
