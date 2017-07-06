@@ -1,3 +1,9 @@
+/**
+ *	2017 7/6
+ *	using a modulo hash table for O(1) key search and insert
+ *	and a doubly linked list to keep track of the prioirity
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -107,16 +113,18 @@ void lRUCachePut(LRUCache* obj, int key, int value)
 		// insert into the head of slot chain
 		lRUCache_entry_put_in_head(obj, slot_index, new_entry);
 
-		// allocate priority node and insert in the back of the list
+		// allocate priority node and set relation between entry and llist_node
 		llist_node *new_llist_node = malloc(sizeof(llist_node));
-		new_entry->node_ptr = new_llist_node;
-		
+		new_entry->node_ptr = new_llist_node; 
 		new_llist_node->entry_ptr = new_entry;
-		new_llist_node->next = NULL;  // NULL terminated
+		
+		// insert into the tail of the priority list
+		new_llist_node->next = NULL;
 		new_llist_node->prev = obj->priority_tail;
 		obj->priority_tail->next = new_llist_node;
 		obj->priority_tail = new_llist_node;
-	} else { // retrieve the first element in priority list
+	} else {
+		// retrieve the first element in priority list
 		llist_node *node_ptr = obj->priority_head->next;
 		entry *entry_ptr = node_ptr->entry_ptr;
 		const int evict_slot_index = entry_ptr->key % obj->capacity;
