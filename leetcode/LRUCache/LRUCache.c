@@ -66,22 +66,15 @@ LRUCache* lRUCacheCreate(int capacity)
 int lRUCacheGet(LRUCache* obj, int key)
 {
 	int value;
-	bool key_found = false;
 	
 	entry *entry_ptr = obj->data[key % obj->capacity];
 	while (entry_ptr != NULL) {
 		if (entry_ptr->key == key) {
 			value = entry_ptr->value;
-			key_found = true;
-			break;
+			lRUCache_llist_put_in_tail(obj, entry_ptr->node_ptr);
+			return value;
 		}
 		entry_ptr = entry_ptr->next;
-	}
-
-	if (key_found) { // update priority_list
-		llist_node *node_ptr = entry_ptr->node_ptr;
-		lRUCache_llist_put_in_tail(obj, node_ptr);
-		return value;
 	}
 	return -1;
 }
