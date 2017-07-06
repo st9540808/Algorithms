@@ -8,7 +8,7 @@ using vector = std::vector<T>;
 class Solution {
 public:
 	// time complexity O(m+n)
-    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+	bool searchMatrix(vector<vector<int>>& matrix, int target) {
 		if (matrix.size() == 0 || matrix.at(0).size() == 0)
 			return false;
 
@@ -29,7 +29,7 @@ public:
 	}
 
 	// time compexity O(mlgn)
-    bool _searchMatrix(vector<vector<int>>& matrix, int target) {
+	bool _searchMatrix(vector<vector<int>>& matrix, int target) {
 		if (matrix.size() == 0 || matrix.at(0).size() == 0)
 			return false;
 
