@@ -38,12 +38,6 @@ private:
 	}
 
 	bool is_legal_placement(const int row, const int col) {
-		// check row
-		for (int i = 0; i < this->n; i++) {
-			if (board[row][i] == true)
-				return false;
-		}
-
 		// check column
 		for (int i = 0; i < this->n; i++) {
 			if (board[i][col] == true)
@@ -119,7 +113,7 @@ private:
 int main()
 {
 	Solution sol;
-	auto answers = sol.solveNQueens(10);
+	auto answers = sol.solveNQueens(4);
 	
 
 	for (const vector<string> &row : answers) {
