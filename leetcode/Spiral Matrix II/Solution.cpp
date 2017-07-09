@@ -9,8 +9,7 @@ using vector = std::vector<T>;
 class Solution {
 public:
 	vector<vector<int>> generateMatrix(int n) {
-        vector<vector<int>> matrix(n, vector<int>(n));
-
+		vector<vector<int>> matrix(n, vector<int>(n));
 		generateMatrix_recur(matrix, n, 0, 1);
 		return std::move(matrix);
 	}
