@@ -11,6 +11,7 @@ using string = std::string;
 class Solution {
 public:
 	vector<vector<string>> solveNQueens(int n) {
+		answers.clear();
 		this->n = n;
 		allocate(n);
 		solveNQueens_recur(0);
@@ -51,7 +52,7 @@ private:
 		else if (row > col)
 			base_row = row - col;
 
-		for (int i = base_row, j = base_col; is_in_bound(i, j); i++, j++) {
+		for (int i = base_row, j = base_col; is_within_boundary(i, j); i++, j++) {
 			if (board[i][j] == true)
 				return false;
 		}
@@ -62,7 +63,7 @@ private:
 		else if (row + col > this->n - 1)
 			base_row = row + col - (this->n - 1);
 
-		for (int i = base_row, j = base_col; is_in_bound(i, j); i++, j--) {
+		for (int i = base_row, j = base_col; is_within_boundary(i, j); i++, j--) {
 			if (board[i][j] == true)
 				return false;
 		}
@@ -70,7 +71,7 @@ private:
 		return true;
 	}
 
-	inline bool is_in_bound(int i, int j) {
+	inline bool is_within_boundary(int i, int j) {
 		return (0 <= i && i < this->n) && (0 <= j && j < this->n);
 	}
 
