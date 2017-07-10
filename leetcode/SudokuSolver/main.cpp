@@ -2,6 +2,9 @@
 #include <vector>
 #include "solveSudoku_cpp.h"
 
+using std::cout;
+using std::endl;
+
 char input[][10] =
 {
 	"53..7....", //0
@@ -25,8 +28,7 @@ int main()
 	Solution solve;
 	solve.solveSudoku(board);
 
-	for (int i = 0; i < 9; ++i)
-	{
+	for (int i = 0; i < 9; ++i)	{
 		for (int j = 0; j < 9; ++j)
 		{
 			if (j % 3 == 0)

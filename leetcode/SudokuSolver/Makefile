@@ -1,5 +1,5 @@
 cpp_Sudoku: solveSudoku.h main.cpp
-	g++-6 -o main main.cpp -g -Wall -std=gnu++14
+	g++-7.1 -o main main.cpp -g -Wall
 
 c_Sudoku: solveSudoku.o main.o
 	gcc -o main solveSudoku.o main.o -g -Wall -std=c99
