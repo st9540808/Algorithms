@@ -24,24 +24,24 @@ private:
 	bool **board;
 	vector<vector<string>> answers;
 
-	void solveNQueens_recur(int row) {
+	void solveNQueens_recur(int col) {
 		for (int i = 0; i < this->n; i++) {
-			bool legal_placement = is_legal_placement(row, i);
-			if (legal_placement && row == this->n - 1) {
-				this->board[row][i] = true;
+			bool legal_placement = is_legal_placement(i, col);
+			if (legal_placement && col == this->n - 1) {
+				this->board[i][col] = true;
 				store_answer();
 			} else if (legal_placement) {
-				this->board[row][i] = true;
-				solveNQueens_recur(row + 1);
+				this->board[i][col] = true;
+				solveNQueens_recur(col + 1);
 			}
-			this->board[row][i] = false;
+			this->board[i][col] = false;
 		}
 	}
 
 	bool is_legal_placement(const int row, const int col) {
-		// check column
+		// check row
 		for (int i = 0; i < this->n; i++) {
-			if (board[i][col] == true)
+			if (board[row][i] == true)
 				return false;
 		}
 
@@ -116,13 +116,11 @@ int main()
 	Solution sol;
 	auto answers = sol.solveNQueens(4);
 	
-
 	for (const vector<string> &row : answers) {
 		for (string str : row)
 			std::cout << str << std::endl;
 		std::cout << std::endl;
 	}
-
 
 	return 0;
 }
