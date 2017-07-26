@@ -9,6 +9,11 @@ public:
     void solveSudoku(vector<vector<char>>& board) {
 		vector<vector<char>> map = board;
 
+		for (vector<char>& row : board) {
+			for (char& elem : row)
+				if (elem == '.') elem = '0';
+		}
+
 		int row = 0, col = 0;
 		while (map[row][col] != '.') { // initialize to the location of first blank in map[][]
 			++col;
@@ -32,23 +37,14 @@ public:
 
 private:
 	bool validAnsExist(vector<vector<char>>& board, int row, int col) {
-		if (board[row][col] == '.') {
-			for (char testAns = '1'; testAns <= '9'; ++testAns) {
-				if (isValid(board, testAns, row, col)) {
-					board[row][col] = testAns;
-					return true;
-				}
-			}
-		} else {
-			for (char testAns = board[row][col] + 1; testAns <= '9'; ++testAns) {
-				if (isValid(board, testAns, row, col)) {
-					board[row][col] = testAns;
-					return true;
-				}
+		for (char testAns = board[row][col] + 1; testAns <= '9'; testAns++) {
+			if (isValid(board, testAns, row, col)) {
+				board[row][col] = testAns;
+				return true;
 			}
 		}
 	
-		board[row][col] = '.';
+		board[row][col] = '0';
 		return false;
 	}
 	
